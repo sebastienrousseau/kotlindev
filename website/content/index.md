@@ -1,12 +1,12 @@
 ---
 layout: index
-title: kotlindev — Portable, Hardened Kotlin 2.1+ AI Developer Container
-name: kotlindev
-headline: Hardened Kotlin 2.1+ Development Container for AI Agents
-lead: Modern Kotlin container preloaded with kotlinc, OpenJDK 21, Gradle, Maven, Kotlin Language Server, 4-pane TMUX IDE, and stdio Model Context Protocol (MCP) server.
-permalink: /
-language: en-GB
-date: 2026-08-29
+title: "kotlindev — Portable, Hardened Kotlin 2.1+ AI Developer Container"
+name: "kotlindev"
+headline: "Hardened Kotlin 2.1+ Development Container for AI Agents"
+lead: "Modern Kotlin container preloaded with kotlinc, OpenJDK 21, Gradle, Maven, Kotlin Language Server, 4-pane TMUX IDE, and stdio Model Context Protocol (MCP) server."
+permalink: "/"
+language: "en-GB"
+date: "2026-08-29"
 ---
 
 <section id="overview" class="section">
