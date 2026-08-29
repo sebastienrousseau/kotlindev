@@ -1,7 +1,7 @@
 site_name = "kotlindev"
 site_title = "kotlindev — Portable, Hardened Kotlin 2.1+ AI Developer Container"
 site_description = "Modern Kotlin container preloaded with kotlinc, OpenJDK 21, Gradle, Maven, Kotlin Language Server, 4-pane TMUX IDE, and stdio Model Context Protocol (MCP) server."
-base_url = "https://sebastienrousseau.com/kotlindev/"
+base_url = "https://kotlindev.hyperbox.run/"
 language = "en-GB"
 
 content_dir = "content"
