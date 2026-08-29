@@ -1,0 +1,16 @@
+site_name = "kotlindev"
+site_title = "kotlindev — Portable, Hardened Kotlin 2.1+ AI Developer Container"
+site_description = "Modern Kotlin container preloaded with kotlinc, OpenJDK 21, Gradle, Maven, Kotlin Language Server, 4-pane TMUX IDE, and stdio Model Context Protocol (MCP) server."
+base_url = "https://sebastienrousseau.github.io/kotlindev/"
+language = "en-GB"
+
+content_dir = "content"
+template_dir = "_layouts"
+output_dir = "public"
+
+[agents]
+agents_txt = true
+ai_plugin = true
+
+[agents.mcp]
+enabled = true
