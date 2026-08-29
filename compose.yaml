@@ -1,0 +1,39 @@
+# kotlindev compose definition — hardened development container.
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+#
+# Builds the local Containerfile and runs as non-root (UID/GID 1000) with all
+# capabilities dropped, no-new-privileges, and a read-only root filesystem.
+# Mounts the current directory into /work.
+services:
+  kotlindev:
+    build:
+      context: .
+      dockerfile: Containerfile
+      args:
+        USERNAME: dev
+        USER_UID: "1000"
+        USER_GID: "1000"
+    image: kotlindev:local
+    container_name: kotlindev
+    init: true
+    stdin_open: true
+    tty: true
+    user: "1000:1000"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 512
+    mem_limit: 4g
+    volumes:
+      - .:/work:z
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=512m
+      - /home/dev/.cache:rw,noexec,nosuid,size=1g
+    ports:
+      - "7681:7681"
+      - "60000-60010:60000-60010/udp"
+    environment:
+      - TERM=xterm-256color
+      - LANGDEV_SESSION=kotlindev
