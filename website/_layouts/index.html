@@ -13,22 +13,42 @@
       <a class="btn btn-secondary btn-lg" href="https://github.com/sebastienrousseau/{{name}}" target="_blank" rel="noopener">Star on GitHub</a>
     </div>
 
-    <!-- Realistic Animated Terminal IDE & MCP Session -->
-    <figure class="mcp-term">
-      <figcaption class="mcp-term-bar">
-        <span class="mcp-term-dot dot-red" aria-hidden="true"></span>
-        <span class="mcp-term-dot dot-yellow" aria-hidden="true"></span>
-        <span class="mcp-term-dot dot-green" aria-hidden="true"></span>
-        <span class="mcp-term-title">Terminal · {{name}} stdio &amp; TMUX IDE</span>
+    <!-- Authentic Code & Terminal IDE Preview -->
+    <figure class="terminal-preview-card">
+      <figcaption class="terminal-header">
+        <div class="window-dots">
+          <span class="dot dot-red" aria-hidden="true"></span>
+          <span class="dot dot-yellow" aria-hidden="true"></span>
+          <span class="dot dot-green" aria-hidden="true"></span>
+        </div>
+        <div class="terminal-tab-bar">
+          <span class="tab-item active-tab font-mono">src/main/kotlin/dev/Pipeline.kt</span>
+          <span class="tab-item font-mono">terminal</span>
+        </div>
+        <div class="terminal-actions">
+          <span class="badge-status font-mono">● Kotlin 2.1 + Gradle + KLS</span>
+        </div>
       </figcaption>
-      <pre class="mcp-term-body"><code><span class="mcp-tl mcp-tl-cmd mcp-tl-typed mcp-tl-t1"><span class="mcp-tl-ps" aria-hidden="true">$ </span>make up</span>
-<span class="mcp-tl mcp-tl-out mcp-tl-fade mcp-tl-f2">[OK] kotlindev ready &lt; 500ms · Kotlin 2.1, Gradle 8.12, KLS active</span>
-<span class="mcp-tl mcp-tl-cmd mcp-tl-typed mcp-tl-t3"><span class="mcp-tl-ps" aria-hidden="true">$ </span>claude mcp add {{name}} -- docker exec -i {{name}} /usr/local/bin/mcp-server</span>
-<span class="mcp-tl mcp-tl-out mcp-tl-fade mcp-tl-f4">{{name}}-mcp · connected (stdio JSON-RPC 2.0)</span>
-<span class="mcp-tl mcp-tl-ask mcp-tl-typed mcp-tl-t5"><span class="mcp-tl-ps" aria-hidden="true">&gt; </span>Run ktlintCheck and gradle test --continuous.</span>
-<span class="mcp-tl mcp-tl-out mcp-tl-fade mcp-tl-f6">dispatched: gradle ktlintCheck test</span>
-<span class="mcp-tl mcp-tl-ok mcp-tl-fade mcp-tl-f7">✓ BUILD SUCCESSFUL in 450ms · 100% unit tests passed</span>
-<span class="mcp-tl mcp-tl-caret" aria-hidden="true"></span></code></pre>
+      <div class="terminal-editor-pane">
+        <pre class="editor-code font-mono"><code><span class="code-comment">// src/main/kotlin/dev/Pipeline.kt · Kotlin 2.1 Coroutines</span>
+<span class="code-kw">sealed interface</span> <span class="code-type">Event</span> {
+    <span class="code-kw">data class</span> <span class="code-type">Message</span>(<span class="code-kw">val</span> topic: <span class="code-type">String</span>, <span class="code-kw">val</span> body: <span class="code-type">String</span>) : <span class="code-type">Event</span>
+    <span class="code-kw">data object</span> <span class="code-type">Heartbeat</span> : <span class="code-type">Event</span>
+}
+
+<span class="code-kw">suspend fun</span> <span class="code-fn">processEvents</span>(flow: <span class="code-type">Flow</span>&lt;<span class="code-type">Event</span>&gt;): <span class="code-type">Result</span>&lt;<span class="code-type">Summary</span>&gt; = <span class="code-fn">coroutineScope</span> {
+    <span class="code-kw">val</span> total = flow.<span class="code-fn">filterIsInstance</span>&lt;<span class="code-type">Event.Message</span>&gt;()
+        .<span class="code-fn">map</span> { it.body.length }
+        .<span class="code-fn">reduce</span> { acc, len -&gt; acc + len }
+    <span class="code-type">Result</span>.<span class="code-fn">success</span>(<span class="code-type">Summary</span>(bytes = total))
+}</code></pre>
+      </div>
+      <div class="terminal-cli-pane font-mono">
+        <div class="cli-line"><span class="mcp-tl-ps">$ </span>./gradlew test ktlintCheck</div>
+        <div class="cli-out">&gt; Task :test PASSED (18 tests in 0.22s) · &gt; Task :ktlintCheck PASSED</div>
+        <div class="cli-line"><span class="mcp-tl-ask">&gt; </span>Claude MCP: Run continuous test watcher in background TMUX pane</div>
+        <div class="cli-out cli-ok">✓ BUILD SUCCESSFUL in 380ms · Kotlin Language Server active</div>
+      </div>
     </figure>
   </div>
 </section>
